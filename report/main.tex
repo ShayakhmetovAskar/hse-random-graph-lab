@@ -1,0 +1,91 @@
+% encoding: utf-8
+\documentclass[12pt,a4paper]{article}
+
+% поддержка русского
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{cmap}            % копирование кириллицы из PDF
+
+% математические пакеты
+\usepackage{amsmath,amssymb}
+\usepackage[fleqn]{amsmath}  % выравнивание формул слева
+
+% графика
+\usepackage{graphicx}
+\graphicspath{{./}}
+
+% гиперссылки
+\usepackage[hidelinks]{hyperref}
+
+% отступ первой строки абзаца
+\setlength{\parindent}{1em}
+% расстояние между абзацами
+\setlength{\parskip}{0.5em}
+
+% заголовок
+\title{Отчет по части I}
+\author{Шаяхметов Аскар}
+\date{} % убрать дату
+
+\begin{document}
+
+\maketitle
+
+\section*{Часть 1. Зависимость от параметров распределений}
+\vspace{-1em}
+\noindent
+Значения на графиках — это среднее по $M=100$ независимым реализациям для каждого набора параметров. Число вершин графа $n=100$, параметр $k=5$ для kNN-графа и порог $d=1$ для DIST-графа.
+
+\begin{enumerate}
+  \item \textbf{kNN-граф:} Среднее число компонент связности практически не зависит от параметра $\alpha$ SkewNormal (почти горизонтальная кривая около $6$–$6.5$). Для Student-t с ростом $\nu$ число компонент убывает, то есть при «тяжёлых хвостах» ($\nu$ - меньше) граф рассоединен сильнее.
+
+  \item \textbf{DIST-граф:} Среднее кликовое число минимально при $\alpha=0$ и симметрично растёт при удалении от нуля (от $\sim40$ до $\sim70$). Для Student-t кликовое число увеличивается с $\nu$ (от $\sim30$ при $\nu\approx1$ до $\sim40$–$45$ при $\nu\approx10$).
+\end{enumerate}
+
+\begin{center}
+  \includegraphics[width=0.9\linewidth]{part1_results.png}
+\end{center}
+\newpage
+\section*{Часть 2. Зависимость от $n$, $k$ и $d$}
+\vspace{-1em}
+\noindent
+Значения на графиках — это среднее по $M=100$ независимым реализациям для каждого набора параметров.
+
+\begin{itemize}
+  \item \textbf{kNN-граф:}
+    \begin{itemize}
+      \item При увеличении числа вершин \(n\) (при \(\alpha=\alpha_0\), \(\nu=\nu_0\), \(k=5\)) среднее число компонент связности возрастает.
+      \item При увеличении числа соседей \(k\) (при \(\alpha=\alpha_0\), \(\nu=\nu_0\), \(n=100\)) число компонент резко убывает.
+    \end{itemize}
+
+  \item \textbf{DIST-граф:}
+    \begin{itemize}
+      \item При увеличении числа вершин \(n\) (при \(\alpha=\alpha_0\), \(\nu=\nu_0\), \(d=1\)) среднее кликовое число растёт, причём скорость роста выше для SkewNormal-графов.
+      \item При увеличении \(d\) (при \(\alpha=\alpha_0\), \(\nu=\nu_0\), \(n=100\)) кликовое число также увеличивается, и для SkewNormal-графов этот рост быстрее. Рост вызван тем, что точки чаще попадают в радиус \(d\).
+    \end{itemize}
+\end{itemize}
+
+
+\begin{center}
+  \includegraphics[width=0.9\linewidth]{part2_results.png}
+\end{center}
+
+\section*{Часть 3. Разделяющая способность статистик}
+\vspace{-1em}
+\noindent
+Построено по $M_{\text{large}}=5000$ реализаций каждого распределения.
+
+\begin{center}
+  \includegraphics[width=0.8\linewidth]{part3_results_0.png}
+\end{center}
+\begin{center}
+  \includegraphics[width=\linewidth]{part3_results_1.png}
+\end{center}
+
+\begin{itemize}
+  \item \textbf{kNN-граф:} Распределения числа компонент при $H_0$ и $H_1$ сильно перекрываются — низкая разделяющая способность, мощность маленькая.
+  \item \textbf{DIST-граф:} Распределения кликового числа сдвинуты друг от друга: для SkewNormal значения пик около 50, для Student-t — около 39. Красная зона — область принятия H1: мощность лучше
+\end{itemize}
+
+\end{document}
