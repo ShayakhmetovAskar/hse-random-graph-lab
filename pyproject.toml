@@ -1,0 +1,9 @@
+[tool.ruff]
+line-length = 88
+# Enable common rule sets: E (pycodestyle), F (pyflakes), I (isort), B (flake8-bugbear)
+select = ["E", "F", "I", "B"]
+ignore = [
+    "B008", # allow function call as default arg (numpy/scipy random usage)
+]
+# Exclude virtual-envs etc.
+exclude = [".venv", "venv", "build", "dist"]
