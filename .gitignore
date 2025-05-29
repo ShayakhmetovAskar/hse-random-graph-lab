@@ -1,0 +1,88 @@
+# Файлы виртуальных окружений
+venv/
+.env/
+.env.*    # альтернативные env-файлы
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Дистрибутивы и сборки пакетов
+build/
+develop-eggs/
+dist/
+eggs/
+*.egg-info/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+
+# Тестовые файлы и кэш
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Логи и временные файлы
+*.log
+logs/
+*.tmp
+tmp/
+
+# Файлы настройки IDE
+# VSCode
+.vscode/
+# PyCharm
+.idea/
+*.iml
+
+# Файлы конфигурации среды разработки
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Исследовательские данные и результаты
+data/
+raw_data/
+processed_data/
+results/
+outputs/
+figures/
+plots/
+
+# Сторонние библиотеки и кэш зависимостей
+*.egg
+*.egg-info/
+pip-delete-this-directory.txt
+
+# Cython build artifacts
+*.so
+*.pyd
+
+# Spyder project settings
+.spyproject/
+
+# MacOS специфичные
+.DS_Store
+
+# Windows специфичные
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Прочие
+*.sqlite3
+*.db
