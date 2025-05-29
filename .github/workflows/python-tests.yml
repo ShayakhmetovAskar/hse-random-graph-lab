@@ -2,9 +2,9 @@ name: Python package – tests & lint
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "update_utils"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "update_utils"]
 
 permissions:
   contents: read
