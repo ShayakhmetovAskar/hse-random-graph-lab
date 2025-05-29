@@ -1,15 +1,10 @@
-from typing import List, Set
-import numpy as np
-from scipy.stats import skewnorm, t
 import networkx as nx
 import numpy as np
 from scipy.stats import lognorm, skewnorm, t, weibull_min
 from sklearn.neighbors import NearestNeighbors
-import matplotlib.pyplot as plt
-from tqdm import tqdm
-from scipy.stats import skewnorm, t, norm, expon, gamma, beta, chi2, uniform
 
 SIGMA_CONST = np.log(5)
+
 
 def generate_skewnormal(n, alpha):
     return skewnorm.rvs(a=alpha, size=n)
@@ -18,11 +13,14 @@ def generate_skewnormal(n, alpha):
 def generate_student_t(n, nu):
     return t.rvs(df=nu, size=n)
 
-def generate_lognormal_zero_sigma(size=100, sigma=SIGMA_CONST):
-    return lognorm.rvs(s=sigma,scale=1.0,size=size)
 
-def generate_weibull_half_lambda(size=100, lambda_=1.0,k = 0.5):
-    return weibull_min.rvs(c=k,scale=lambda_,size=size)
+def generate_lognormal_zero_sigma(size=100, sigma=SIGMA_CONST):
+    return lognorm.rvs(s=sigma, scale=1.0, size=size)
+
+
+def generate_weibull_half_lambda(size=100, lambda_=1.0, k=0.5):
+    return weibull_min.rvs(c=k, scale=lambda_, size=size)
+
 
 # Построение KNN-графа
 def build_knn_graph(data, k):
@@ -66,7 +64,7 @@ def safe_compute(func, G, default=0):
     """Безопасное вычисление характеристики с обработкой ошибок"""
     try:
         return func(G)
-    except:
+    except Exception:
         return default
 
 
@@ -132,7 +130,7 @@ def diameter_largest_component(G):
     subgraph = G.subgraph(largest_cc)
     try:
         return nx.diameter(subgraph)
-    except:
+    except Exception:
         return 0
 
 
@@ -142,20 +140,8 @@ def edge_connectivity(G):
         return 0
     try:
         return nx.edge_connectivity(G)
-    except:
+    except Exception:
         return 0
-
-
-def clique_number(G):
-    """Размер максимальной клики (приближенно)"""
-    if G.number_of_nodes() == 0:
-        return 0
-    try:
-        cliques = nx.find_cliques(G)
-        return max((len(c) for c in cliques), default=1)
-    except:
-        return 1
-
 
 def get_generator(distribution_name, params):
     """Возвращает функцию-генератор для заданного распределения"""
