@@ -33,5 +33,14 @@ jobs:
       - name: Ruff linter
         run: ruff check --output-format=github .
 
+      - name: Execute Jupyter notebooks
+        run: |
+          # Install nbconvert for notebook execution
+          pip install jupyter nbconvert
+          # Execute all notebooks under src/ (fails CI on errors)
+          for nb in $(find src -name "*.ipynb"); do
+            jupyter nbconvert --to notebook --execute "$nb" --output ".executed-$(basename $nb)"
+          done
+
       - name: Run tests
         run: pytest
