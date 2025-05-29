@@ -3,5 +3,4 @@ line-length = 125
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B"]
-ignore = ["B008"]
 exclude = [".venv", "venv", "build", "dist", "*.ipynb"]
