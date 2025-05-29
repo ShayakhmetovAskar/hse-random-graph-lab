@@ -1,9 +1,7 @@
 [tool.ruff]
 line-length = 125
-# Enable common rule sets: E (pycodestyle), F (pyflakes), I (isort), B (flake8-bugbear)
-select = ["E", "F", "I", "B"]
-ignore = [
 
-]
-# Exclude virtual-envs etc.
-exclude = [".venv", "venv", "build", "dist"]
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["B008"]
+exclude = [".venv", "venv", "build", "dist", "*.ipynb"]
