@@ -1,8 +1,7 @@
-import numpy as np
 import networkx as nx
+import numpy as np
 
 import src.utils as utils  # ← updated import
-
 
 # ---------- KNN GRAPH ---------- #
 

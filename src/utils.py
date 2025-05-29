@@ -1,8 +1,7 @@
-import numpy as np
-from scipy.stats import skewnorm, t, weibull_min, lognorm
 import networkx as nx
+import numpy as np
+from scipy.stats import lognorm, skewnorm, t, weibull_min
 from sklearn.neighbors import NearestNeighbors
-
 
 
 def generate_skewnormal(n, alpha):
