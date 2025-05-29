@@ -3,6 +3,7 @@ import numpy as np
 from scipy.stats import lognorm, skewnorm, t, weibull_min
 from sklearn.neighbors import NearestNeighbors
 
+SIGMA_CONST = np.log(5)
 
 def generate_skewnormal(n, alpha):
     return skewnorm.rvs(a=alpha, size=n)
@@ -11,7 +12,7 @@ def generate_skewnormal(n, alpha):
 def generate_student_t(n, nu):
     return t.rvs(df=nu, size=n)
 
-def generate_lognormal_zero_sigma(size=100, sigma=np.log(5)):
+def generate_lognormal_zero_sigma(size=100, sigma=SIGMA_CONST):
     return lognorm.rvs(s=sigma,scale=1.0,size=size)
 
 def generate_weibull_half_lambda(size=100, lambda_=1.0,k = 0.5):
